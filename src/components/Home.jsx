@@ -39,10 +39,10 @@ const Home = () => {
               alt="iphone"
               style={{
                 height: "88vh",
-                "@media only screen and (max-width:700px)": {
-                  height: "100%",
-                  width: "100%",
-                },
+                // "@media only screen and (max-width:768px)": {
+                //   height: "100%",
+                //   width: "100%",
+                // },
               }}
             />
           </div>
@@ -53,10 +53,10 @@ const Home = () => {
               alt="iphone"
               style={{
                 height: "88vh",
-                "@media only screen and (max-width:700px)": {
-                  height: "100%",
-                  width: "100%",
-                },
+                // "@media only screen and (max-width:768px)": {
+                //   height: "100%",
+                //   width: "100%",
+                // },
               }}
             />
           </div>
@@ -67,10 +67,10 @@ const Home = () => {
               alt="iphone"
               style={{
                 height: "88vh",
-                "@media only screen and (max-width:700px)": {
-                  height: "100%",
-                  width: "100%",
-                },
+                // "@media only screen and (max-width:768px)": {
+                //   height: "100%",
+                //   width: "100%",
+                // },
               }}
             />
           </div>

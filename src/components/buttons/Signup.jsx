@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+  const navigate = useNavigate()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState(JSON.parse(localStorage.getItem("users")) || [])
+  const handleRegisterClick = () => {
+    setUsername(pre => {
+      const newUsers = [...pre, {name, email, password}];
+      const jsonUsers = JSON.stringify(newUsers);
+
+      name && email && password != "" ? localStorage.setItem("users", jsonUsers) : alert("review")
+      navigate('/')
+    })
+    setName("")
+    setEmail("")
+    setPassword("")
+
+  }
   return (
     <>
       {/* <!-- Button trigger modal --> */}
@@ -52,7 +71,8 @@ const Signup = () => {
                     type="text"
                     className="form-control"
                     id="exampleInput"
-                
+                    value={name}
+                  onChange={e => setName(e.target.value)}
                   />
                  
                 </div>
@@ -65,6 +85,8 @@ const Signup = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                   <div id="emailHelp" className="form-text">
                     We'll never share your email with anyone else.
@@ -78,20 +100,22 @@ const Signup = () => {
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="mb-3 form-check">
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    id="exampleCheck1"
                   />
                   <label className="form-check-label" htmlFor="exampleCheck1">
                     Check me out
                   </label>
                 </div>
                 <button
-                  type="submit"
+
+                  onClick={handleRegisterClick}
                   className="btn btn-outline-primary w-100 mt-5"
                 >
                   Register

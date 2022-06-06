@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const history = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [users, setUser] = useState(JSON.parse(localStorage.getItem("users")))
+
+  const handleClickLogin = () => {
+    const nameUser = users.some(user => {
+      return user.email === email
+    })
+    const passUser = users.some(user => {
+      return user.password === password
+    })
+    
+    nameUser && passUser  ? history("/") : alert("Kiểm tra lại tài khoản , mật khẩu")
+  }
   return (
     <>
       {/* <!-- Button trigger modal --> */}
@@ -50,8 +66,10 @@ const Login = () => {
                   <input
                     type="email"
                     className="form-control"
-                    id="exampleInputEmail1"
+                    id="exampleInputEmail2"
                     aria-describedby="emailHelp"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                   <div id="emailHelp" className="form-text">
                     We'll never share your email with anyone else.
@@ -64,20 +82,21 @@ const Login = () => {
                   <input
                     type="password"
                     className="form-control"
-                    id="exampleInputPassword1"
+                    id="exampleInputPassword2"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="mb-3 form-check">
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    id="exampleCheck1"
                   />
                   <label className="form-check-label" htmlFor="exampleCheck1">
                     Check me out
                   </label>
                 </div>
-                <button type="submit" className="btn btn-outline-primary w-100 mt-5">
+                <button onClick={handleClickLogin} type="submit" className="btn btn-outline-primary w-100 mt-5">
                   Submit
                 </button>
               </form>
